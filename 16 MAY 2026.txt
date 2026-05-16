@@ -1,0 +1,48 @@
+show databases;
+create database vitbhopal1;
+USE vitbhopal1;
+CREATE TABLE CSE_Students (
+   sid  int8,
+   sname varchar(50),
+   smarks int1
+   
+   
+);
+show tables from vitbhopal1;
+CREATE TABLE EEE_Students (
+   sid  int8,
+   sname varchar(50),
+   smarks int1
+   
+   
+);
+CREATE TABLE ECE_Students (
+   sid  int8,
+   sname varchar(50),
+   smarks int1
+   
+   
+);
+Show tables from vitbhopal1;
+INSERT INTO CSE_Students (sid, sname, smarks) VALUES 
+(1, 'Rahul Sharma', 88),
+(2, 'Priya Patel', 95),
+(3, 'Amit Verma', 74),
+(4, 'Sneha Reddy', 91),
+(5, 'Vikram Singh', 65);
+SELECT * FROM CSE_Students;
+INSERT INTO ECE_Students (sid, sname, smarks) VALUES 
+(201, 'Arjun Nair', 82),
+(202, 'Ananya Das', 89),
+(203, 'Rohan Mehta', 71),
+(204, 'Kriti Joshi', 94),
+(205, 'Aditya Rao', 68);
+SELECT * FROM ECE_Students;
+
+INSERT INTO EEE_Students (sid, sname, smarks) VALUES 
+(301, 'Karan Malhotra', 80),
+(302, 'Divya Teja', 93),
+(303, 'Siddharth Roy', 76),
+(304, 'Meera Nair', 87),
+(305, 'Gaurav Kumar', 62);
+SELECT * FROM EEE_Students ;
