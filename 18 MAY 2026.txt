@@ -1,0 +1,197 @@
+
+-------------------------------------------------18 MAY 2026 TASK --------------------------
+use vitbhopal1;
+SELECT * FROM CSE_Students;
+ALTER TABLE CSE_STUDENTS ADD (
+sdepartment varchar(50)
+);
+ALTER TABLE CSE_Students ADD(
+    spid int8, spid_2 int8
+);
+SELECT * FROM CSE_Students;
+DELETE FROM CSE_Students 
+WHERE sid IS NULL;
+SELECT * FROM CSE_Students;
+INSERT INTO CSE_Students (sid, sname, smarks, sdepartment, spid, spid_2) 
+VALUES (6, 'Semi', 95, 'CSE', 98121, 98122);
+Select * FROM CSE_Students;
+UPDATE CSE_Students 
+SET sdepartment = 'Data Science', spid = 91101, spid_2 = 91102 
+WHERE sid = 1;
+
+
+-- 4. Update Priya (sid = 2)
+UPDATE CSE_Students 
+SET sdepartment = 'Computer Science', spid = 92201, spid_2 = 92202 
+WHERE sid = 2;
+
+-- 5. Update Amit (sid = 3)
+UPDATE CSE_Students 
+SET sdepartment = 'Mechanical Engineering', spid = 93301, spid_2 = 93302 
+WHERE sid = 3;
+
+-- 6. Update Sneha (sid = 4)
+UPDATE CSE_Students 
+SET sdepartment = 'Electrical Engineering', spid = 94401, spid_2 = 94402 
+WHERE sid = 4;
+
+-- 7. Update Vikram (sid = 5)
+UPDATE CSE_Students 
+SET sdepartment = 'Business Analytics', spid = 95501, spid_2 = 95502 
+WHERE sid = 5;
+
+
+SELECT * FROM CSE_Students;
+ALTER TABLE CSE_Students ADD (
+    sphn BIGINT, 
+    sphn2 BIGINT
+);
+SELECT * FROM CSE_Students;
+INSERT INTO CSE_Students (sid, sname, smarks, sdepartment, spid, spid_2, sphn, sphn2) 
+VALUES (7, 'Raj', 82, 'CSE', 98123, 98124, 9999888877, 9999111122);
+SELECT * FROM CSE_Students;
+ALTER TABLE CSE_Students DROP COLUMN sphn2;
+SELECT * FROM CSE_Students;
+ALTER TABLE CSE_Students ADD (
+    sCountry varchar(30) DEFAULT 'INDIA'
+);
+SELECT * FROM CSE_Students;
+ALTER TABLE CSE_Students RENAME COLUMN sCountry TO SLocation;
+SELECT * FROM CSE_Students;
+-- 3. Update Rahul's phone number
+UPDATE CSE_Students 
+SET sphn = 9876543211 
+WHERE sid = 1;
+
+-- 4. Update Priya's phone number
+UPDATE CSE_Students 
+SET sphn = 9876543212 
+WHERE sid = 2;
+
+-- 5. Update Amit's phone number
+UPDATE CSE_Students 
+SET sphn = 9876543213 
+WHERE sid = 3;
+
+-- 6. Update Sneha's phone number
+UPDATE CSE_Students 
+SET sphn = 9876543214 
+WHERE sid = 4;
+
+-- 7. Update Vikram's phone number
+UPDATE CSE_Students 
+SET sphn = 9876543215 
+WHERE sid = 5;
+
+-- 8. Update Semi's phone number
+UPDATE CSE_Students 
+SET sphn = 9812100000 
+WHERE sid = 6;
+
+
+
+-- 10. Check your fully updated table grid
+SELECT * FROM CSE_Students;
+DESC CSE_Students;
+-- 9. Create the Worker table with proper structural constraints
+CREATE TABLE Worker (
+    WORKER_ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    FIRST_NAME CHAR(25),
+    LAST_NAME CHAR(25),
+    SALARY INT,
+    JOINING_DATE DATETIME,
+    DEPARTMENT CHAR(25)
+);
+
+-- 10. Insert data using proper MySQL DATETIME format (YYYY-MM-DD HH:MM:SS)
+INSERT INTO Worker 
+    (WORKER_ID, FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) 
+VALUES
+    (1, 'Monika', 'Arora', 100000, '2014-02-20 09:00:00', 'HR'),
+    (2, 'Niharika', 'Verma', 80000, '2014-06-11 09:00:00', 'Admin'),
+    (3, 'Vishal', 'Singhal', 300000, '2014-02-20 09:00:00', 'HR'),
+    (4, 'Amitabh', 'Singh', 500000, '2014-02-20 09:00:00', 'Admin'),
+    (5, 'Vivek', 'Bhati', 500000, '2014-06-11 09:00:00', 'Admin'),
+    (6, 'Vipul', 'Diwan', 200000, '2014-06-11 09:00:00', 'Account'),
+    (7, 'Satish', 'Kumar', 75000, '2014-01-20 09:00:00', 'Account'),
+    (8, 'Geetika', 'Chauhan', 90000, '2014-04-11 09:00:00', 'Admin');
+
+-- 11. View your newly created worker records
+SELECT * FROM Worker;
+
+-- 12. Update Worker ID 1's First and Last Name
+UPDATE Worker 
+SET First_name = 'Jayanth', Last_name = 'V' 
+WHERE worker_id = 1;
+
+-- 13. Give every single worker a 5,000 salary bonus
+
+UPDATE Worker 
+SET salary = salary + 5000; 
+
+
+-- 14. Delete the worker record for ID 8 (Geetika)
+DELETE FROM Worker 
+WHERE worker_id = 8;
+
+-- 15. View your final, cleanly modified Worker dataset
+SELECT * FROM Worker;
+SELECT * FROM Worker 
+ORDER BY WORKER_ID;
+-- Create the table structure
+CREATE TABLE class (
+    id INT PRIMARY KEY,
+    name VARCHAR(50)
+);
+
+-- Insert initial data so that ID 5 exists to be updated later
+INSERT INTO class (id, name) VALUES (1, 'Alice');
+INSERT INTO class (id, name) VALUES (2, 'Bob');
+INSERT INTO class (id, name) VALUES (5, 'Old Name');
+
+-- 1. Start the transaction
+START TRANSACTION;
+
+-- 2. Update the existing record
+UPDATE class SET name = 'Abhijit' WHERE id = 5;
+
+-- 3. Create the first savepoint
+SAVEPOINT A;
+
+-- 4. Insert Chris
+INSERT INTO class (id, name) VALUES (6, 'Chris');
+
+-- 5. Create the second savepoint
+SAVEPOINT B;
+
+-- 6. Insert Bravo
+INSERT INTO class (id, name) VALUES (7, 'Bravo');
+
+-- 7. Create the third savepoint
+SAVEPOINT C;
+
+-- 8. View the current state of the table (within the transaction)
+SELECT * FROM class;
+
+-- 9. Finally, save all changes permanently
+COMMIT;
+Select * FROM WORKER WHERE SALARY > 100000;
+SELECT * FROM worker 
+WHERE department = 'HR' AND salary > 50000;
+SELECT * FROM worker 
+WHERE department = 'Admin' 
+  AND salary > 60000;
+  SELECT * FROM worker;
+  SELECT FIRST_NAME, LAST_NAME, DEPARTMENT 
+FROM Worker 
+WHERE DEPARTMENT != 'HR';
+SELECT * FROM worker 
+WHERE JOINING_DATE >= '2014-02-01 00:00:00' 
+  AND JOINING_DATE < '2014-06-01 00:00:00';
+SELECT * FROM worker 
+WHERE DEPARTMENT != 'Admin' 
+  AND SALARY != 80000;
+  SELECT * FROM worker 
+WHERE WORKER_ID <= 3 
+  AND DEPARTMENT = 'HR';
+
