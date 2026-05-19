@@ -1,0 +1,81 @@
+-----------------------------------------------------20 MAY 2026  TASK --------------------------
+use vitbhopal1;
+show tables from vitbhopal1;
+select * from worker;
+SELECT first_name, department, salary 
+FROM worker 
+WHERE department = 'HR' AND salary > 80000;
+SELECT first_name, department, salary 
+FROM worker 
+WHERE department = 'IT' OR salary > 120000;
+SELECT first_name, department, salary 
+FROM worker 
+WHERE worker_id = '1' OR worker_id = '5';
+SELECT * 
+FROM worker
+WHERE WORKER_ID IN (1, 4, 5);
+SELECT * 
+FROM worker 
+WHERE salary BETWEEN 45000 AND 75000;
+SELECT * 
+FROM worker 
+WHERE salary NOT BETWEEN 150000 AND 250000;
+SELECT * 
+FROM worker 
+WHERE salary BETWEEN 60000 AND 90000 AND department = 'admin';
+SELECT first_name, department, salary 
+FROM worker 
+WHERE first_name LIKE 'A%';
+SELECT first_name, department, salary 
+FROM worker 
+WHERE first_name LIKE '%n';
+SELECT first_name, department, salary 
+FROM worker 
+WHERE first_name LIKE '%am%';
+SELECT first_name, department, salary 
+FROM worker 
+WHERE first_name LIKE 'V%';
+
+SELECT first_name, department, salary 
+FROM worker 
+WHERE first_name LIKE 'V_____';
+SELECT first_name, department, salary 
+FROM worker 
+WHERE first_name LIKE '_o%';
+SELECT * FROM worker WHERE first_name LIKE '_i__a_';
+Select min(salary) from worker ;
+Select count(worker_id) from worker where department='hr' ;
+Select sum(salary) from worker where department='hr' ;
+SELECT AVG(SALARY) 
+FROM worker 
+WHERE DEPARTMENT = 'HR';
+select min(salary) from worker where department ="admin" and first_name not like '%a%';
+select salary from worker where department ="admin";
+SELECT salary FROM worker 
+UNION
+SELECT  salary FROM worker ;
+SELECT FIRST_NAME AS employee_name, SALARY AS monthly_pay 
+FROM worker;
+SELECT DISTINCT DEPARTMENT 
+FROM worker;
+SELECT FIRST_NAME, SALARY,
+    CASE 
+        WHEN SALARY >= 500000 THEN 'High Tier'
+        WHEN SALARY BETWEEN 150000 AND 499999 THEN 'Mid Tier'
+        ELSE 'Entry Tier'
+    END AS salary_bracket
+FROM worker;
+SELECT FIRST_NAME, DEPARTMENT,
+    CASE DEPARTMENT
+        WHEN 'HR' THEN 'Human Resources'
+        WHEN 'Admin' THEN 'Administration'
+        WHEN 'Account' THEN 'Accounting'
+        ELSE 'Other'
+    END AS full_department_name
+FROM worker;
+CREATE VIEW admin_workers AS
+SELECT FIRST_NAME, DEPARTMENT, SALARY 
+FROM worker 
+WHERE DEPARTMENT = 'Admin';
+SELECT * FROM admin_workers;
+
