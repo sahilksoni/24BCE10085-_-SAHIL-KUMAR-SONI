@@ -1,0 +1,105 @@
+-------------------------------20 MAY 2026 TASK--------------------
+
+use vitbhopal1;
+CREATE TABLE PEOPLE (
+  PPP_ID int NOT NULL,
+  FIRSTNAME varchar(255) not NULL,
+  LASTNAME varchar(255) unique not null,
+  Age int
+);
+desc people;
+INSERT into People values(501,'Sahil','Soni',25);
+INSERT into People values(502,'Sachin','Saini',23);
+select * from people;
+ALTER TABLE PEOPLE ADD UNIQUE(AGE);
+ALTER TABLE PEOPLE
+DROP CONSTRAINT Age;
+drop table persons;
+CREATE TABLE Persons (
+    
+    Age int
+    
+);
+
+Insert into persons values (25);
+Select * from persons;
+DELETE FROM Persons WHERE Age < 18;
+
+ALTER TABLE Persons	
+ADD CONSTRAINT chk_age CHECK (Age>=18);
+CREATE TABLE CITY (
+  CITY_ID int NOT NULL,
+  FIRSTNAME varchar(255) not NULL,
+  LASTNAME varchar(255) unique not null,
+  Age int,
+  City varchar(255) DEFAULT 'HISAR'
+);
+CREATE TABLE EMPLOYEE (
+  EMP_ID int NOT NULL Primary key,
+  FIRSTNAME varchar(255) not NULL,
+  LASTNAME varchar(255) unique not null,
+  Age int not null unique,
+  City varchar(255) DEFAULT 'hansi'
+);
+desc employee;
+INSERT INTO EMPLOYEE (EMP_ID, FIRSTNAME, LASTNAME, Age, City)
+VALUES (1, 'Rahul', 'Sharma', 28, 'Delhi');
+INSERT INTO EMPLOYEE (EMP_ID, FIRSTNAME, LASTNAME, Age)
+VALUES (2, 'Amit', 'Verma', 32);
+ALTER TABLE EMPLOYEE
+DROP PRIMARY KEY;
+ALTER TABLE EMPLOYEE
+ADD PRIMARY KEY (LASTNAME);
+
+ALTER TABLE EMPLOYEE
+DROP PRIMARY KEY;
+ALTER TABLE EMPLOYEE
+ADD PRIMARY KEY (Emp_id);
+desc employee;
+select * from employee;
+
+
+CREATE TABLE Parents (
+    ParentID INT PRIMARY KEY,
+    ParentName VARCHAR(100) NOT NULL,
+    PhoneNumber VARCHAR(15)
+) ENGINE=InnoDB;
+
+
+
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    StudentName VARCHAR(100) NOT NULL,
+    Age INT,
+    ParentID INT, 
+    
+    
+    FOREIGN KEY (ParentID) REFERENCES Parents(ParentID)
+);
+
+
+INSERT INTO Parents VALUES (1, 'John Doe', '555-0199');
+
+
+INSERT INTO Students VALUES (102, 'Sam Smith', 14, 99);
+
+INSERT INTO Parents VALUES (99, 'Jane Smith', '555-0122');
+
+
+INSERT INTO Students VALUES (102, 'Sam Smith', 14, 99);
+INSERT INTO Parents VALUES (128, 'Sahil Soni', '999-512');
+INSERT INTO Students VALUES (103, 'Sachin Soni', 23,128);
+select * from students;
+select * from parents;
+
+
+SHOW VARIABLES LIKE 'foreign_key_checks';
+
+INSERT INTO Parents VALUES (128, 'Sahil Soni', '999-512');
+INSERT INTO Students VALUES (103, 'Sachin Soni', 23, 128);
+select * from parents;
+
+DELETE FROM Parents WHERE ParentID = 128;
+
+SELECT * FROM students;
+
