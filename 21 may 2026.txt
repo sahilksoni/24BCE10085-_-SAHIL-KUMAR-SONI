@@ -1,0 +1,109 @@
+--------------21 MAY 2026-----------------
+use vitbhopal1;
+
+CREATE TABLE Parents (
+    ParentID INT PRIMARY KEY,
+    ParentName VARCHAR(100) NOT NULL,
+    PhoneNumber VARCHAR(15)
+) ENGINE=InnoDB;
+
+
+
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    StudentName VARCHAR(100) NOT NULL,
+    Age INT,
+    ParentID INT, 
+    FOREIGN KEY (ParentID) REFERENCES Parents(ParentID) 
+        ON DELETE CASCADE 
+        ON UPDATE CASCADE
+);
+
+-- Insert 5 records into the Parents table
+INSERT INTO Parents (ParentID, ParentName, PhoneNumber) VALUES
+(101, 'John Doe', '555-0101'),
+(102, 'Jane Smith', '555-0102'),
+(103, 'Robert Johnson', '555-0103'),
+(104, 'Emily Davis', '555-0104'),
+(105, 'Michael Brown', '555-0105');
+
+-- Insert 5 corresponding records into the Students table
+INSERT INTO Students (StudentID, StudentName, Age, ParentID) VALUES
+(1, 'Alice Doe', 14, 101),
+(2, 'Bob Smith', 15, 102),
+(3, 'Charlie Johnson', 14, 103),
+(4, 'Daisy Davis', 16, 104),
+(5, 'Ethan Brown', 15, 105);
+
+DELETE FROM Parents WHERE ParentID = 101;
+
+SELECT * FROM Students;
+UPDATE Parents SET ParentID = ParentID + 800 WHERE ParentID IN (103, 104, 105);
+
+
+
+UPDATE Parents SET ParentID = 999 WHERE ParentID = 102;
+
+SELECT * FROM Students;
+SELECT * FROM PARENTS;
+SELECT * FROM WORKER ORDER BY  salary asc;
+SELECT count(worker_id) FROM WORKER where department='admin'or department='account' ORDER BY  salary asc;
+SELECT department, SUM(salary) FROM worker GROUP BY department order by department asc;
+SELECT Department, COUNT(Department) AS DepartmentCount
+FROM worker
+GROUP BY Department
+order by department;
+SELECT Department, COUNT(Department) AS DepartmentCount
+FROM worker
+GROUP BY Department
+HAVING COUNT(Department) >= 3
+ORDER BY DepartmentCount DESC;
+select department, sum(salary)from worker group by department having sum(salary)<=300000;
+SELECT department, SUM(salary) 
+FROM worker
+GROUP BY department 
+LIMIT 2 OFFSET 1;
+drop table toppers;
+CREATE TABLE toppers (
+    id INT 
+);
+insert into toppers values(2),(7);
+insert into toppers values(5);
+
+select worker_id,first_name, department from worker where worker_id in (select id from toppers);
+SELECT department, MIN(salary) AS least_salary
+FROM worker
+GROUP BY department
+ORDER BY least_salary ASC
+LIMIT 2;
+select sum(salary), department from worker group by department order by sum(salary) asc limit 2;
+SELECT first_name, last_name, salary 
+FROM worker 
+WHERE department = 'Admin'
+ORDER BY salary DESC
+LIMIT 1 OFFSET 1;
+use vitbhopal1;
+SELECT department, MAX(salary) AS second_highest_salary
+FROM worker
+WHERE salary < (
+    -- Subquery: Finds the absolute highest salary for each department
+    SELECT MAX(salary) 
+    FROM worker w2 
+    WHERE w2.department = worker.department
+)
+GROUP BY department;
+select * from worker;
+SELECT first_name, department, salary 
+FROM worker 
+ORDER BY salary DESC 
+LIMIT 1;
+
+
+SELECT first_name, department, salary 
+FROM worker 
+WHERE (department, salary) IN (
+    
+    SELECT department, MAX(salary) 
+    FROM worker 
+    GROUP BY department
+);
