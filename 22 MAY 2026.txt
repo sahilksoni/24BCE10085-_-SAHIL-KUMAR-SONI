@@ -1,0 +1,47 @@
+ ------------------------22 MAY 2026 TASK--------------------------------------------------
+USE vitbhopal1;
+
+
+CREATE TABLE department (
+    did INT PRIMARY KEY,
+    dname VARCHAR(25) NOT NULL UNIQUE
+);
+
+INSERT INTO department VALUES 
+('101','CSE'),('102','ECE'),('103','CIVIL'),('104','EEE'),('107','BEC');
+
+SELECT * FROM department ORDER BY did;
+
+CREATE TABLE hod (
+    hid INT PRIMARY KEY,
+    hname VARCHAR(25) NOT NULL UNIQUE
+);
+
+INSERT INTO hod VALUES 
+('101', 'ARJUN SHARMA'),
+('102', 'ROHAN VERMA'),
+('103', 'SNEHA REDDY'),
+('104', 'AMIT PATEL'),
+('107', 'DEEPAK KUMAR');
+
+SELECT * FROM department CROSS JOIN hod ORDER BY did ASC;
+
+SELECT * 
+FROM department, hod 
+WHERE department.did = hod.hid 
+ORDER BY did;
+SELECT * 
+FROM department 
+INNER JOIN hod ON department.did = hod.hid 
+ORDER BY did;
+SELECT * 
+FROM department 
+NATURAL JOIN hod 
+;
+SELECT department.did, dname, hname 
+FROM department 
+INNER JOIN hod ON department.did = hod.hid;
+SELECT * 
+FROM department 
+LEFT JOIN hod ON department.did = hod.hid 
+ORDER BY did;
