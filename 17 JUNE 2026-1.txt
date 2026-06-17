@@ -1,0 +1,49 @@
+Q1  db.employees.insertOne({_id:101,name:"Rahul",age:28,department:"IT",salary:55000,city:"Mumbai",skills:["Java","MongoDB","AWS"],experience:5})
+
+Q2  db.employees.insertMany([{_id:102,name:"Priya",age:30,department:"HR",salary:50000,city:"Chennai"},{_id:103,name:"Amit",age:35,department:"IT",salary:70000,city:"Delhi"},{_id:104,name:"Sneha",age:27,department:"Finance",salary:45000,city:"Mumbai"}])
+
+Q3  db.employees.findOne({department:"IT"})
+
+Q4  db.employees.find()
+
+Q5  db.employees.find({},{name:1,salary:1,_id:0})
+
+Q6  db.employees.find({salary:50000})
+
+Q7  db.employees.find({salary:{$lt:60000}})
+
+Q8  db.employees.find({salary:{$gte:60000}})
+
+Q9  db.employees.find({age:{$ne:30}})
+
+Q10 db.employees.find({city:{$in:["Chennai","Mumbai"]}})
+
+Q11 db.employees.find({city:{$ne:"Chennai"}})
+
+Q12 db.employees.find({department:"IT",salary:{$gt:50000}})
+
+Q13 db.employees.find({city:{$in:["Chennai","Bangalore"]}})
+
+Q14 db.employees.find({salary:{$lte:60000}})
+
+Q15 db.employees.find({department:{$nin:["IT","HR"]}})
+
+Q16 db.employees.find({experience:{$exists:true}})
+
+Q17 db.employees.find({salary:{$type:"int"}})
+
+Q18 db.employees.find({skills:"MongoDB"})
+
+Q19 db.employees.find({skills:{$all:["MongoDB","AWS"]}})
+
+Q20 db.employees.find({skills:{$size:3}})
+
+Q21 db.employees.find({skills:{$elemMatch:{$eq:"Java"}}})
+
+Q22 db.employees.find().sort({salary:-1})
+
+Q23 db.employees.find().sort({salary:-1}).limit(3)
+
+Q24 db.employees.updateOne({_id:101},{$inc:{salary:5000}})
+
+Q25 db.employees.updateMany({department:"IT"},{$mul:{salary:1.10}})
